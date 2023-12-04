@@ -1,4 +1,4 @@
-package Connection;
+package com.prog3.wallet.Connection;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
