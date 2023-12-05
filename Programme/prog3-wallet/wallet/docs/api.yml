@@ -7,3 +7,20 @@ servers:
   - url: https://hei.wallet.api.com
 security:
   - oauth2: []
+paths:
+components:
+  parameters:
+    PagePagination:
+      name: page
+      description: Pagination page, default is 1 if not specified
+      in: query
+      schema:
+        type: integer
+        default: 1
+    PageSizePagination:
+      name: pageSize
+      description: Pagination page size, default is 50 if not specified
+      in: query
+      schema:
+        type: integer
+        default: 50
