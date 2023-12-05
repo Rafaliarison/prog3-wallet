@@ -24,3 +24,150 @@ components:
       schema:
         type: integer
         default: 50
+  components:
+    schemas:
+      TransactionType:
+        type: string
+        enum:
+          - WITHDRAWAL
+          - DEPOSIT
+          - TRANSFER
+      Transaction:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            example: '550e8400-e29b-41d4-a716-446655440000'
+          ref:
+            type: string
+            example: '1201-244'
+          type:
+            $ref: '#/components/schemas/TransactionType'
+          description:
+            type: string
+            example: 'Some description'
+          amount:
+            type: number
+            format: float
+            example: 2000.2
+          transaction_datetime:
+            type: string
+            format: date-time
+            example: '2021-01-01 02:01:01'
+          destination_account:
+            type: string
+            format: uuid
+            example: '550e8400-e29b-41d4-a716-446655440000'
+          source_account:
+            type: string
+            format: uuid
+            example: '550e8400-e29b-41d4-a716-446655440000'
+      AccountType:
+        type: string
+        enum:
+          - CHECKING
+          - SAVING
+          - BUSINESS
+          - INVESTMENT
+          - CERTIFICATE_OF_DEPOSIT
+      Account:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            example: '550e8400-e29b-41d4-a716-446655440000'
+          name:
+            type: string
+            example: 'Account Name'
+          type:
+            $ref: '#/components/schemas/AccountType'
+          balance:
+            type: number
+            format: float
+            example: 2000.2
+          number:
+            type: string
+            example: '101-0151'
+          creation_date:
+            type: string
+            format: date
+            example: '2023-01-01'
+          comment:
+            type: string
+            example: some comments
+          owner:
+            type: string
+            example: Rabe
+          bank_name:
+            type: string
+            example: BMOI
+          currency:
+            $ref: '#/components/schemas/Currency'
+      Acurrency:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            example: '550e8400-e29b-41d4-a716-446655440000'
+          name:
+            type: string
+            example: 'Ariary'
+          code:
+            type: string
+            example: 'MGA'
+          symbol:
+            type: string
+            example: 'Ar'
+          exchange_rate:
+            type: number
+            format: float
+            example: 0.0002
+          updated_at:
+            type: string
+            format: date
+            description: current_date if not specified
+            example: '2023-01-01'
+      ResponseBody:
+        type: object
+        properties:
+          code:
+            type: integer
+            example: 200
+          message:
+            type: string
+            example: OK
+      PingBody:
+        allOf:
+          - $ref: '#/components/schemas/ResponseBody'
+        example:
+          status:
+            code: 200
+            message: pong
+          body: null
+      BadRequestBody:
+        allOf:
+          - $ref: '#/components/schemas/ResponseBody'
+        example:
+          status:
+            code: 400
+            message: BAD REQUEST
+          body: null
+      ForbiddenBody:
+        allOf:
+          - $ref: '#/components/schemas/ResponseBody'
+        example:
+          status:
+            code: 403
+            message: FORBIDDEN
+          body: null
+      InternalServerError:
+        allOf:
+          - $ref: '#/components/schemas/ResponseBody'
+        example:
+          status:
+            code: 500
+            message: INTERNAL SERVER ERROR
+          body: null
