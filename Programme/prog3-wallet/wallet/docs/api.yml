@@ -1,0 +1,9 @@
+openapi: 3.0.3
+info:
+  title: Wallet API
+  version: 1.0.0
+  description: STD22037 - STD22077
+servers:
+  - url: https://hei.wallet.api.com
+security:
+  - oauth2: []
