@@ -16,7 +16,7 @@ public class DatabaseConnection {
     @Value("${sring.datasource.password")
     private String password;
 
-    public Connection connect() {
+    public Connection getConnection() {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, user, password);
